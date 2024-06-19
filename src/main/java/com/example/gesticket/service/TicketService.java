@@ -8,6 +8,6 @@ public interface TicketService {
     Ticket createTicket(Ticket ticket);
     List<Ticket> readTickets();
     Ticket updateTicket(Ticket ticket,long id);
-    Ticket deleteTicket(long id);
+    String deleteTicket(long id);
 
 }

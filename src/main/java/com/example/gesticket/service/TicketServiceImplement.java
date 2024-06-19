@@ -6,10 +6,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class TicketServiceImplement implements TicketService {
-    private final  TicketRepository ticketRepository;
+    private final  TicketRepository ticketRepository;//Injection par constructeur de notre repository
     @Override
     public Ticket createTicket(Ticket ticket) {
         return ticketRepository.save(ticket);
@@ -17,18 +19,35 @@ public class TicketServiceImplement implements TicketService {
 
     @Override
     public List<Ticket> readTickets() {
-        return List.of();
+        return ticketRepository.findAll();
     }
 
     @Override
     public Ticket updateTicket(Ticket ticket, long id) {
-        return ticketRepository.findBy(id).map(t-> {
-            t.set
-        });
+        Optional<Ticket> tickets = ticketRepository.findById(id);
+        if (tickets.isPresent()) {
+            Ticket t  = tickets.get();
+            t.setDescription(ticket.getDescription());
+            t.setDateCreation(ticket.getDateCreation());
+            t.setTitre(ticket.getTitre());
+            t.setEtat(ticket.getEtat());
+            t.setPriorite(ticket.getPriorite());
+            t.setCategorie(ticket.getCategorie());
+            Ticket updatedTicket = ticketRepository.save(t);
+          return updatedTicket;
+        }
+        else {
+            return null;
+        }
     }
 
     @Override
-    public Ticket deleteTicket(long id) {
-        return null;
+    public String deleteTicket(long id) {
+        if (ticketRepository.existsById(id)) {
+            ticketRepository.deleteById(id);
+            return "Ticket supprimé avec succès";
+        } else {
+            return "Ticket non trouvé";
+        }
     }
 }

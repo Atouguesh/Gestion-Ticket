@@ -1,10 +1,14 @@
 package com.example.gesticket.modele;
 
+import com.example.gesticket.Enum.Categorie;
+import com.example.gesticket.Enum.EtatTicket;
+import com.example.gesticket.Enum.Priorite;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import java.util.List;
 
 import java.time.LocalDateTime;
 
@@ -21,5 +25,14 @@ public class Ticket {
     private String titre;
     private String description;
     private LocalDateTime dateCreation;
+    @Enumerated(EnumType.STRING)
+    private EtatTicket etat;
+    @Enumerated(EnumType.STRING)
+    private Categorie categorie;
+    @Enumerated(EnumType.STRING)
+    private Priorite priorite;
+
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notification> notifications;
 
 }
