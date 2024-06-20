@@ -1,0 +1,19 @@
+package com.example.gesticket.modele;
+
+import com.example.gesticket.Enum.Role;
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Table(name = "users")
+@Data
+public class Users {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private String nom;
+    private String email;
+    private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+}
