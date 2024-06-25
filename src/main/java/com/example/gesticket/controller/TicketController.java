@@ -4,6 +4,7 @@ import com.example.gesticket.modele.Ticket;
 import com.example.gesticket.service.NotificationService;
 import com.example.gesticket.service.TicketService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @RequestMapping("/ticket")
 @AllArgsConstructor
 public class TicketController {
+    @Autowired
     private TicketService ticketService;// Inversion de contrôle ici on passe par l'interface pour appeller les méthodes de service implement.
     private final NotificationService notificationService;
 

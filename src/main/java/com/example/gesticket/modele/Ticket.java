@@ -3,6 +3,7 @@ package com.example.gesticket.modele;
 import com.example.gesticket.Enum.Categorie;
 import com.example.gesticket.Enum.EtatTicket;
 import com.example.gesticket.Enum.Priorite;
+import com.example.gesticket.modele.Users;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,5 +35,13 @@ public class Ticket {
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notification> notifications;
+
+    @ManyToOne
+    @JoinColumn(name = "apprenant_id")
+    private Apprenant apprenant;
+
+    @ManyToOne
+    @JoinColumn(name = "formateur_id")
+    private Formateur formateur;
 
 }

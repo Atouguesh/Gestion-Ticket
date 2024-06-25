@@ -3,6 +3,7 @@ package com.example.gesticket.controller;
 import com.example.gesticket.modele.Users;
 import com.example.gesticket.service.UsersService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 @AllArgsConstructor
 public class UsersController {
+    @Autowired
     private UsersService usersService;
 
     @GetMapping

@@ -2,11 +2,17 @@ package com.example.gesticket.controller;
 
 import com.example.gesticket.modele.BasedeConnaissances;
 import com.example.gesticket.service.BasedeConnaissanceService;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/basedeConnaissance")
+@Data
 public class BasedeConnaissanceController {
+    @Autowired
     private BasedeConnaissanceService basedeConnaissanceService;
 
     @PostMapping("/create")

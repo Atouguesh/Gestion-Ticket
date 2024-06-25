@@ -5,9 +5,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
 @Data
-public class Users {
+public abstract class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
