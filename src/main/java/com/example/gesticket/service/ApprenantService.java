@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface ApprenantService {
     Apprenant createApprenant(Apprenant apprenant);
-    Apprenant updateApprenant (Apprenant apprenant, int id);
-    String deleteApprenant (int id);
+    Apprenant updateApprenant (Apprenant apprenant, Long id);
+    String deleteApprenant (Long id);
     List<Apprenant> readApprenants();
 
-    Apprenant findById(int apprenantId);
+    Apprenant findById(Long apprenantId);
 
     Ticket saveTicket(Ticket ticket);
 
     Apprenant saveApprenant(Apprenant byId);
 
-    List<Ticket> getTicketsByApprenantId(int apprenantId);
+    List<Ticket> getTicketsByApprenantId(Long apprenantId);
 }

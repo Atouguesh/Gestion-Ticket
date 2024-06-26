@@ -10,8 +10,8 @@ import lombok.Data;
 @Data
 public abstract class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nom;
     private String email;
     private String password;

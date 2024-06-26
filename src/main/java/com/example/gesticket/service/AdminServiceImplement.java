@@ -4,21 +4,24 @@ import com.example.gesticket.modele.Admin;
 import com.example.gesticket.modele.BasedeConnaissances;
 import com.example.gesticket.repository.AdminRepository;
 import com.example.gesticket.repository.BasedeConnaissanceRepository;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Data
+@AllArgsConstructor
 public class AdminServiceImplement implements AdminService {
     private AdminRepository adminRepository;
-    @Autowired
     private BasedeConnaissanceRepository basedeConnaissanceRepository;
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public Admin findById(int id) {
+    public Admin findById(Long id) {
         return adminRepository.findById(id).orElse(null);
     }
 
@@ -27,18 +30,19 @@ public class AdminServiceImplement implements AdminService {
         return basedeConnaissanceRepository.save(basedeConnaissance);
     }
 
-    public List<BasedeConnaissances> getBasesDeConnaissanceByAdminId(int adminId) {
+    public List<BasedeConnaissances> getBasesDeConnaissanceByAdminId(Long adminId) {
         Admin admin = findById(adminId);
         return admin != null ? admin.getBasedeConnaissance() : null;
     }
 
     @Override
     public Admin createAdmin(Admin admin) {
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         return adminRepository.save(admin);
     }
 
     @Override
-    public Admin updateAdmin(Admin admin, int id) {
+    public Admin updateAdmin(Admin admin, Long id) {
             Optional<Admin> Admin1 = adminRepository.findById(id);
         if (Admin1.isPresent()) {
             Admin Admin2= Admin1.get();
@@ -54,7 +58,7 @@ public class AdminServiceImplement implements AdminService {
     }
 
     @Override
-    public String deleteAdmin(int id) {
+    public String deleteAdmin(Long id) {
         if (adminRepository.existsById(id)) {
             adminRepository.deleteById(id);
             return "Supprimé avec succès";

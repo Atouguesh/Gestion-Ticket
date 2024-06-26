@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface AdminService {
         Admin createAdmin(Admin admin);
-        Admin updateAdmin(Admin admin, int id);
-        String deleteAdmin(int id);
+        Admin updateAdmin(Admin admin, Long id);
+        String deleteAdmin(Long id);
         List<Admin> readAdmin();
-        List<BasedeConnaissances> getBasesDeConnaissanceByAdminId(int adminId);
-        Admin findById(int id);
+        List<BasedeConnaissances> getBasesDeConnaissanceByAdminId(Long adminId);
+        Admin findById(Long id);
         BasedeConnaissances saveBasedeConnaissance(BasedeConnaissances basedeConnaissance);
 
 }

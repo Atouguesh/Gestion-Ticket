@@ -21,19 +21,19 @@ public class ApprenantController {
     }
 
     @PostMapping("/{apprenantId}/tickets")
-    public Ticket createTicket(@PathVariable int apprenantId, @RequestBody Ticket ticket) {
+    public Ticket createTicket(@PathVariable Long apprenantId, @RequestBody Ticket ticket) {
         Apprenant apprenant = apprenantService.saveApprenant(apprenantService.findById(apprenantId));
         ticket.setApprenant(apprenant);
         return apprenantService.saveTicket(ticket);
     }
 
     @PutMapping("/update/{id}")
-    public Apprenant update (@RequestBody Apprenant apprenant, @PathVariable int id){
+    public Apprenant update (@RequestBody Apprenant apprenant, @PathVariable Long id){
         return apprenantService.updateApprenant(apprenant, id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete (@PathVariable int id){
+    public String delete (@PathVariable Long id){
         return apprenantService.deleteApprenant(id);
     }
 
@@ -43,7 +43,7 @@ public class ApprenantController {
     }
 
     @GetMapping("/{apprenantId}/tickets")
-    public List<Ticket> getTicketsByApprenantId(@PathVariable int apprenantId) {
+    public List<Ticket> getTicketsByApprenantId(@PathVariable Long apprenantId) {
         return apprenantService.getTicketsByApprenantId(apprenantId);
     }
 }

@@ -32,17 +32,17 @@ public class FormateurServiceImplement implements FormateurService{
     }
 
     @Override
-    public List<Ticket> getTicketsByFormateurId(int formateurId) {
+    public List<Ticket> getTicketsByFormateurId(Long formateurId) {
         Formateur formateur = findById(formateurId);
         return formateur != null ? formateur.getTickets() : null;
     }
 
     @Override
-    public Formateur findById(int id) {
+    public Formateur findById(Long id) {
         return formateurRepository.findById(id).orElse(null);
     }
 
-    public BasedeConnaissances updateBasedeConnaissance(int baseId, String contenu) {
+    public BasedeConnaissances updateBasedeConnaissance(Long baseId, String contenu) {
         BasedeConnaissances base = basedeConnaissanceRepository.findById(baseId).orElse(null);
         if (base != null) {
             base.setContenu(contenu);
@@ -58,7 +58,7 @@ public class FormateurServiceImplement implements FormateurService{
     }
 
     @Override
-    public String deleteFormateur(int id) {
+    public String deleteFormateur(Long id) {
         if (formateurRepository.existsById(id)) {
             formateurRepository.deleteById(id);
             return "Formateur supprimé avec succès";
@@ -68,7 +68,7 @@ public class FormateurServiceImplement implements FormateurService{
     }
 
     @Override
-    public Formateur update(Formateur formateur, int id) {
+    public Formateur update(Formateur formateur, Long id) {
         Optional<Formateur> formateur1 = formateurRepository.findById(id);
         if (formateur1.isPresent()) {
             Formateur formateur2 = formateur1.get();
@@ -92,7 +92,7 @@ public class FormateurServiceImplement implements FormateurService{
         return basedeConnaissanceRepository.save(basedeConnaissance);
     }
 
-    public List<BasedeConnaissances> getBasesDeConnaissanceByFormateurId(int formateurId) {
+    public List<BasedeConnaissances> getBasesDeConnaissanceByFormateurId(Long formateurId) {
         Formateur formateur = findById(formateurId);
         return formateur != null ? formateur.getBasesdeConnaissances(): null;
     }

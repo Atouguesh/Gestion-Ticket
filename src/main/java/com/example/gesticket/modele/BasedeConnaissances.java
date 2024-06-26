@@ -9,7 +9,7 @@ import lombok.Data;
 public class BasedeConnaissances {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String contenu;
 
     @ManyToOne

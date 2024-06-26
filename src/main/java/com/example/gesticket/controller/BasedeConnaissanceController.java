@@ -21,12 +21,12 @@ public class BasedeConnaissanceController {
     }
 
     @PutMapping("/update/{id}")
-    public BasedeConnaissances update(@RequestBody BasedeConnaissances basedeConnaissances , @PathVariable int id){
+    public BasedeConnaissances update(@RequestBody BasedeConnaissances basedeConnaissances , @PathVariable Long id){
         return basedeConnaissanceService.update(basedeConnaissances , id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable int id){
+    public String delete(@PathVariable Long id){
         return basedeConnaissanceService.deleteBasedeConnaissances(id);
     }
 

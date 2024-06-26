@@ -3,6 +3,7 @@ package com.example.gesticket.controller;
 import com.example.gesticket.modele.Admin;
 import com.example.gesticket.modele.BasedeConnaissances;
 import com.example.gesticket.service.AdminService;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-@Data
+@AllArgsConstructor
 public class AdminController {
-    @Autowired
     private AdminService adminService;
 
     @PostMapping("/create")
@@ -22,12 +22,12 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable int id){
+    public String delete(@PathVariable Long id){
         return adminService.deleteAdmin(id);
     }
 
     @PutMapping("/update/{id}")
-    public Admin update (@RequestBody Admin admin , @PathVariable int id){
+    public Admin update (@RequestBody Admin admin , @PathVariable Long id){
         return adminService.updateAdmin(admin,id);
     }
 
@@ -37,7 +37,7 @@ public class AdminController {
     }
 
     @PostMapping("/{adminId}/basesDeConnaissance")
-    public BasedeConnaissances createBaseDeConnaissance(@PathVariable int adminId, @RequestBody BasedeConnaissances basedeConnaissance) {
+    public BasedeConnaissances createBaseDeConnaissance(@PathVariable Long adminId, @RequestBody BasedeConnaissances basedeConnaissance) {
         Admin admin = adminService.findById(adminId);
         if (admin != null) {
             basedeConnaissance.setAdmin(admin);
@@ -49,7 +49,7 @@ public class AdminController {
     }
 
     @GetMapping("/{adminId}/basesDeConnaissance")
-    public List<BasedeConnaissances> getBasesDeConnaissanceByAdminId(@PathVariable int adminId) {
+    public List<BasedeConnaissances> getBasesDeConnaissanceByAdminId(@PathVariable Long adminId) {
         return adminService.getBasesDeConnaissanceByAdminId(adminId);
     }
 }

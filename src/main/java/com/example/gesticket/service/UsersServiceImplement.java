@@ -17,8 +17,8 @@ public class UsersServiceImplement implements UsersService{
     }
 
     @Override
-    public Users getUser(int id) {
-        return usersRepository.getOne((long) id);
+    public Users getUser(Long id) {
+        return usersRepository.getOne(id);
     }
 
 
@@ -38,7 +38,7 @@ public class UsersServiceImplement implements UsersService{
     }
 
     @Override
-    public String deleteUser(int id) {
+    public String deleteUser(Long id) {
         if (usersRepository.existsById((long) id)) {
             usersRepository.deleteById((long) id);
             return "Utilisateur supprimé avec succès";

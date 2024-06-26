@@ -4,8 +4,8 @@ import com.example.gesticket.modele.Users;
 
 public interface UsersService {
     Users createUser(Users user);
-    Users getUser(int id);
+    Users getUser(Long id);
     Users updateUser(Users user , long id);
-    String deleteUser(int id);
+    String deleteUser(Long id);
 
 }

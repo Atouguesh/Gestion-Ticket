@@ -22,7 +22,7 @@ public class FormateurController {
     }
 
     @PostMapping("/{formateurId}/tickets")
-    public Ticket createTicket(@PathVariable int formateurId, @RequestBody Ticket ticket) {
+    public Ticket createTicket(@PathVariable Long formateurId, @RequestBody Ticket ticket) {
         Formateur formateur = formateurService.findById(formateurId);
         if (formateur != null) {
             ticket.setFormateur(formateur);
@@ -34,12 +34,12 @@ public class FormateurController {
     }
 
     @GetMapping("/{formateurId}/tickets")
-    public List<Ticket> getTicketsByFormateurId(@PathVariable int formateurId) {
+    public List<Ticket> getTicketsByFormateurId(@PathVariable Long formateurId) {
         return formateurService.getTicketsByFormateurId(formateurId);
     }
 
     @PostMapping("/{formateurId}/basesDeConnaissance")
-    public BasedeConnaissances createBasedeConnaissance(@PathVariable int formateurId, @RequestBody BasedeConnaissances basedeConnaissance) {
+    public BasedeConnaissances createBasedeConnaissance(@PathVariable Long formateurId, @RequestBody BasedeConnaissances basedeConnaissance) {
         Formateur formateur = formateurService.findById(formateurId);
         if (formateur != null) {
             basedeConnaissance.setFormateur(formateur);
@@ -51,12 +51,12 @@ public class FormateurController {
     }
 
     @GetMapping("/{formateurId}/basesDeConnaissance")
-    public List<BasedeConnaissances> getBasesDeConnaissanceByFormateurId(@PathVariable int formateurId) {
+    public List<BasedeConnaissances> getBasesDeConnaissanceByFormateurId(@PathVariable Long formateurId) {
         return formateurService.getBasesDeConnaissanceByFormateurId(formateurId);
     }
 
     @PutMapping("/basesDeConnaissance/{baseId}")
-    public BasedeConnaissances updateBasedeConnaissance(@PathVariable int baseId, @RequestBody String contenu) {
+    public BasedeConnaissances updateBasedeConnaissance(@PathVariable Long baseId, @RequestBody String contenu) {
         return formateurService.updateBasedeConnaissance(baseId, contenu);
     }
 
@@ -66,12 +66,12 @@ public class FormateurController {
     }
 
     @PutMapping("/update/{id}")
-    public Formateur update(@PathVariable int id, @RequestBody Formateur formateur) {
+    public Formateur update(@PathVariable Long id, @RequestBody Formateur formateur) {
         return  formateurService.update(formateur, id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteTicket(@PathVariable int id) {
+    public String deleteTicket(@PathVariable Long id) {
         return formateurService.deleteFormateur(id);
     }
 

@@ -25,7 +25,7 @@ public class ApprenantServiceImplement implements ApprenantService{
     }
 
     @Override
-    public List<Ticket> getTicketsByApprenantId(int apprenantId) {
+    public List<Ticket> getTicketsByApprenantId(Long apprenantId) {
         Apprenant apprenant = apprenantRepository.findById(apprenantId).orElse(null);
         return apprenant != null ? apprenant.getTickets() : null;
     }
@@ -41,7 +41,7 @@ public class ApprenantServiceImplement implements ApprenantService{
     }
 
     @Override
-    public Apprenant updateApprenant(Apprenant apprenant, int id) {
+    public Apprenant updateApprenant(Apprenant apprenant, Long id) {
         Optional<Apprenant> App = apprenantRepository.findById(id);
         if (App.isPresent()) {
             Apprenant App2= App.get();
@@ -56,7 +56,7 @@ public class ApprenantServiceImplement implements ApprenantService{
     }
 
     @Override
-    public String deleteApprenant(int id) {
+    public String deleteApprenant(Long id) {
         if (apprenantRepository.existsById(id)) {
             apprenantRepository.deleteById(id);
             return "Supprimé avec succès";
@@ -71,7 +71,7 @@ public class ApprenantServiceImplement implements ApprenantService{
     }
 
     @Override
-    public Apprenant findById(int id) {
+    public Apprenant findById(Long id) {
         return apprenantRepository.findById(id).orElse(null);
     }
 }

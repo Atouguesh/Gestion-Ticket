@@ -19,7 +19,7 @@ public class BasedeConnaissanceServiceImplement implements BasedeConnaissanceSer
     }
 
     @Override
-    public BasedeConnaissances update(BasedeConnaissances basedeConnaissances, int id) {
+    public BasedeConnaissances update(BasedeConnaissances basedeConnaissances, Long id) {
         Optional<BasedeConnaissances> Bd = basedeConnaissanceRepository.findById(id);
         if (Bd.isPresent()) {
             BasedeConnaissances Bd2 = Bd.get();
@@ -38,7 +38,7 @@ public class BasedeConnaissanceServiceImplement implements BasedeConnaissanceSer
     }
 
     @Override
-    public String deleteBasedeConnaissances(int id) {
+    public String deleteBasedeConnaissances(Long id) {
         if (basedeConnaissanceRepository.existsById(id)) {
             basedeConnaissanceRepository.deleteById(id);
             return "Supprimé avec succès";

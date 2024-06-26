@@ -9,11 +9,6 @@ import java.util.List;
 @Data
 @Table(name = "Apprenant")
 public class Apprenant extends Users{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String nom;
-    private String email;
 
     @OneToMany(mappedBy = "apprenant", cascade = CascadeType.ALL)
     private List<Ticket> tickets;

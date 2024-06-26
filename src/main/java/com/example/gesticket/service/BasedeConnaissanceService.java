@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BasedeConnaissanceService {
     BasedeConnaissances create(BasedeConnaissances basedeConnaissances);
-    BasedeConnaissances update(BasedeConnaissances basedeConnaissances , int id);
+    BasedeConnaissances update(BasedeConnaissances basedeConnaissances , Long id);
     List<BasedeConnaissances> getAllBasedeConnaissances();
-    String deleteBasedeConnaissances(int id);
+    String deleteBasedeConnaissances(Long id);
 }
