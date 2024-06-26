@@ -2,6 +2,7 @@ package com.example.gesticket.service;
 
 import com.example.gesticket.modele.BasedeConnaissances;
 import com.example.gesticket.repository.BasedeConnaissanceRepository;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Data
+@AllArgsConstructor
 public class BasedeConnaissanceServiceImplement implements BasedeConnaissanceService {
     private BasedeConnaissanceRepository basedeConnaissanceRepository;
 
