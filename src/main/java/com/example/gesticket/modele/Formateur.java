@@ -9,7 +9,10 @@ import java.util.List;
 @Data
 @Table(name = "formateur")
 public class Formateur extends Users{
-    String prenom;
+
+
+    private String prenom;
+
 
     @OneToMany(mappedBy = "formateur", cascade = CascadeType.ALL)
     //Dans Formateur, nous avons une relation OneToMany avec Ticket. Cela signifie qu'un formateur peut avoir plusieurs tickets.

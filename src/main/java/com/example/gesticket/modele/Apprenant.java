@@ -12,4 +12,6 @@ public class Apprenant extends Users{
 
     @OneToMany(mappedBy = "apprenant", cascade = CascadeType.ALL)
     private List<Ticket> tickets;
+
+
 }

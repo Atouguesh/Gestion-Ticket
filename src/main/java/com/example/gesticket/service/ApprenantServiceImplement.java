@@ -31,6 +31,8 @@ public class ApprenantServiceImplement implements ApprenantService{
     }
 
     public Ticket saveTicket(Ticket ticket) {
+        Apprenant apprenant = new Apprenant();
+       // ticket.setApprenant(apprenantRepository.findById(apprenantId));
         return ticketRepository.save(ticket);
     }
 

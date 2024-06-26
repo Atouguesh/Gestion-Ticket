@@ -9,7 +9,9 @@ import java.util.List;
 @Data
 @Table(name = "Admin")
 public class Admin extends Users{
-    String prenom;
+
+    private String prenom;
+
 
     @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
     //Dans Admin, nous avons une relation OneToMany avec BaseDeConnaissance. Cela signifie qu'un admin peut créer plusieurs entrées dans la base de connaissance.

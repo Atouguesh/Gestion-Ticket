@@ -3,6 +3,7 @@ package com.example.gesticket.controller;
 import com.example.gesticket.modele.Ticket;
 import com.example.gesticket.service.NotificationService;
 import com.example.gesticket.service.TicketService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
