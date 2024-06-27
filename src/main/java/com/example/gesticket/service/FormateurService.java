@@ -15,6 +15,7 @@ public interface FormateurService {
     Ticket saveTicket(Ticket ticket);
 
     List<Ticket> getTicketsByFormateurId(Long formateurId);
+    Ticket updateTicket(Ticket ticket, Long id);
 
     Formateur findById(Long id);
     BasedeConnaissances saveBasedeConnaissance (BasedeConnaissances basedeConnaissance);

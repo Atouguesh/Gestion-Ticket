@@ -29,7 +29,9 @@ public class SecurityConf {
         http.userDetailsService(userDetailsService);
         return http.csrf(AbstractHttpConfigurer::disable).
                 authorizeHttpRequests(auth->{
+                    //auth.requestMatchers("/api/**").permitAll();
                     auth.requestMatchers("/admin/**").hasRole("ADMIN");
+                    auth.requestMatchers("/ticket/create/**").hasRole("APPRENANT");
                     auth.requestMatchers("/formateur/**").hasRole("FORMATEUR");
                     auth.requestMatchers("/apprenant/**").hasRole("APPRENANT");
                     auth.anyRequest().permitAll();

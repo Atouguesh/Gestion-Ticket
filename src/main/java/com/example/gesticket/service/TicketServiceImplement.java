@@ -23,7 +23,7 @@ public class TicketServiceImplement implements TicketService {
     }
 
     @Override
-    public Ticket updateTicket(Ticket ticket, long id) {
+    public Ticket updateTicket(Ticket ticket, Long id) {
         Optional<Ticket> tickets = ticketRepository.findById(id);
         if (tickets.isPresent()) {
             Ticket t  = tickets.get();
@@ -49,5 +49,10 @@ public class TicketServiceImplement implements TicketService {
         } else {
             return "Ticket non trouvé";
         }
+    }
+
+    @Override
+    public Ticket getTicketWithFormateurAndApprenant(Long ticketId) {
+        return ticketRepository.findByIdWithFormateurAndApprenant(ticketId);
     }
 }

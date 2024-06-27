@@ -5,6 +5,7 @@ import com.example.gesticket.modele.Apprenant;
 import com.example.gesticket.modele.Ticket;
 import com.example.gesticket.repository.ApprenantRepository;
 import com.example.gesticket.repository.TicketRepository;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Data
+@AllArgsConstructor
 public class ApprenantServiceImplement implements ApprenantService{
     @Autowired
     private ApprenantRepository apprenantRepository;
     @Autowired
     private TicketRepository ticketRepository;
+
+    @Autowired
+    private NotificationService notificationService;
 
     public Apprenant saveApprenant(Apprenant apprenant) {
         return apprenantRepository.save(apprenant);
@@ -30,10 +34,16 @@ public class ApprenantServiceImplement implements ApprenantService{
         return apprenant != null ? apprenant.getTickets() : null;
     }
 
-    public Ticket saveTicket(Ticket ticket) {
-        Apprenant apprenant = new Apprenant();
+
+        //Apprenant apprenant = new Apprenant();
        // ticket.setApprenant(apprenantRepository.findById(apprenantId));
-        return ticketRepository.save(ticket);
+
+
+    @Override
+    public Ticket saveTicket(Ticket ticket) {
+        Ticket savedTicket = ticketRepository.save(ticket);
+        notificationService.notifyFormateur(savedTicket);
+        return savedTicket;
     }
 
 

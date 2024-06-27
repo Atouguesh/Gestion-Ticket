@@ -3,6 +3,7 @@ package com.example.gesticket.controller;
 import com.example.gesticket.modele.Apprenant;
 import com.example.gesticket.modele.Ticket;
 import com.example.gesticket.service.ApprenantService;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/apprenant")
-@Data
+@AllArgsConstructor
 public class ApprenantController {
     private ApprenantService apprenantService;
 

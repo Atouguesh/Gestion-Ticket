@@ -23,6 +23,8 @@ public class FormateurServiceImplement implements FormateurService{
     @Autowired
     private TicketRepository ticketRepository;
 
+    private NotificationService notificationService;
+
     public Formateur saveFormateur(Formateur formateur) {
         return formateurRepository.save(formateur);
     }
@@ -95,6 +97,27 @@ public class FormateurServiceImplement implements FormateurService{
     public List<BasedeConnaissances> getBasesDeConnaissanceByFormateurId(Long formateurId) {
         Formateur formateur = findById(formateurId);
         return formateur != null ? formateur.getBasesdeConnaissances(): null;
+    }
+
+
+
+
+    public Ticket updateTicket(Ticket ticket, Long id) {
+        Optional<Ticket> existingTicket = ticketRepository.findById(id);
+        if (existingTicket.isPresent()) {
+            Ticket t = existingTicket.get();
+            t.setDescription(ticket.getDescription());
+            t.setDateCreation(ticket.getDateCreation());
+            t.setTitre(ticket.getTitre());
+            t.setEtat(ticket.getEtat());
+            t.setPriorite(ticket.getPriorite());
+            t.setCategorie(ticket.getCategorie());
+            Ticket updatedTicket = ticketRepository.save(t);
+            notificationService.notifyApprenant(updatedTicket);
+            return updatedTicket;
+        } else {
+            return null;
+        }
     }
 
 }

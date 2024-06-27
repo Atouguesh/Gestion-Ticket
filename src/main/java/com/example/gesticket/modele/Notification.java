@@ -16,8 +16,9 @@ public class Notification {
     private String contenu;
     private LocalDateTime dateCreation;
     private LocalDateTime dateUpdate;
+
     @ManyToOne
-    @JoinColumn(name = "ticket_id", nullable = false)
+    @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
 }
