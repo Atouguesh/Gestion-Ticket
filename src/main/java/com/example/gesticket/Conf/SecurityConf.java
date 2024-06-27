@@ -35,7 +35,7 @@ public class SecurityConf {
                     auth.requestMatchers("/formateur/**").hasRole("FORMATEUR");
                     auth.requestMatchers("/apprenant/**").hasRole("APPRENANT");
                     auth.anyRequest().permitAll();
-                }).httpBasic(Customizer.withDefaults()).build();
+                }).httpBasic(Customizer.withDefaults()).formLogin(Customizer.withDefaults()).build();
 
     }
 

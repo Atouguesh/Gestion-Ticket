@@ -4,6 +4,7 @@ import com.example.gesticket.modele.BasedeConnaissances;
 import com.example.gesticket.modele.Formateur;
 import com.example.gesticket.modele.Ticket;
 import com.example.gesticket.service.FormateurService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,8 @@ import java.util.List;
 public class FormateurController {
     @Autowired
     private FormateurService formateurService;
+
+    @Operation(summary = "Création de l'utilisateur", description = "Cet endpoint nous permet de créer l'utilisateur")
     @PostMapping("/create")
     public Formateur create(Formateur formateur) {
         return formateurService.create(formateur);
@@ -60,16 +63,19 @@ public class FormateurController {
         return formateurService.updateBasedeConnaissance(baseId, contenu);
     }
 
+    @Operation(summary = "Liste des utilisateurs", description = "Cet endpoint nous permet de lister les utilisateurs ")
     @GetMapping
     public List<Formateur> readAllTickets() {
         return formateurService.readFormateurs();
     }
 
+    @Operation(summary = "Modification de l'utilisateur", description = "Cet endpoint nous permet de modifier toutes les informations sur l'utilisateur")
     @PutMapping("/update/{id}")
     public Formateur update(@PathVariable Long id, @RequestBody Formateur formateur) {
         return  formateurService.update(formateur, id);
     }
 
+    @Operation(summary = "Suppression de l'utilisateur", description = "Cet endpoint nous permet de supprimer l'utilisateur par son ID")
     @DeleteMapping("/delete/{id}")
     public String deleteTicket(@PathVariable Long id) {
         return formateurService.deleteFormateur(id);
